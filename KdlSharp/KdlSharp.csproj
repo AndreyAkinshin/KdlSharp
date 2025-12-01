@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace>KdlSharp</RootNamespace>
+    <IsPackable>true</IsPackable>
+
+    <!-- NuGet Package Metadata -->
+    <PackageId>KdlSharp</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Andrey Akinshin</Authors>
+    <Product>KdlSharp</Product>
+    <Description>A comprehensive C# library for the KDL Document Language featuring a high-level object serializer, v2/v1 parsing, schema validation, and query support.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/AndreyAkinshin/KdlSharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/AndreyAkinshin/KdlSharp.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>kdl;parser;serializer;config;configuration;document-language</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>logo.png</PackageIcon>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="/" Condition="Exists('../README.md')"/>
+    <None Include="../LICENSE" Pack="true" PackagePath="/" Condition="Exists('../LICENSE')"/>
+    <None Include="logo.png" Pack="true" PackagePath="/" Condition="Exists('logo.png')"/>
+  </ItemGroup>
+</Project>

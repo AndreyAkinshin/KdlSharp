@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "KDL Official Test Manifest",
+  "description": "Specifies which KDL version each official test expects. Test names should NOT include the .kdl extension.",
+  "version": "1.0.0",
+  "defaultVersion": "v2",
+  "tests": {
+    "v2_only": [
+      "binary_underscore",
+      "binary_trailing_underscore",
+      "decimal_underscore",
+      "hex_underscore",
+      "octal_underscore",
+      "multiline_string",
+      "multiline_raw_string",
+      "raw_multiline_string"
+    ],
+    "v1_only": [
+    ],
+    "both": [
+    ]
+  },
+  "notes": {
+    "description": "This section contains documentation only and is not processed by the test runner",
+    "v2_features": [
+      "Prefixed keywords: #true, #false, #null, #inf, #-inf, #nan",
+      "Multi-line strings: \"\"\"...\"\"\"",
+      "Underscores in numbers: 1_000_000",
+      "Quoted node names: \"my node\""
+    ],
+    "v1_features": [
+      "Bare keywords: true, false, null, inf, -inf, nan (no # prefix)"
+    ],
+    "test_categorization": [
+      "v2_only: Tests that use v2-only features (underscores in numbers, multi-line strings)",
+      "v1_only: Tests that use bare keywords without # prefix",
+      "both: Tests that work identically in both v1 and v2",
+      "Tests not listed use defaultVersion (v2)"
+    ]
+  }
+}

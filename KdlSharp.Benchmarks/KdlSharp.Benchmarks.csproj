@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <!-- Suppress XML doc warnings for benchmark project -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../KdlSharp/KdlSharp.csproj" />
+  </ItemGroup>
+
+  <!-- Copy official benchmark files from specs submodule -->
+  <ItemGroup>
+    <None Include="../specs/tests/benchmarks/*.kdl" CopyToOutputDirectory="PreserveNewest" LinkBase="OfficialBenchmarks" />
+  </ItemGroup>
+</Project>

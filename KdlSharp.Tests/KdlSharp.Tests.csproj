@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <!-- Suppress XML doc warnings for test project -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="coverlet.collector" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="FluentAssertions" Version="6.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../KdlSharp/KdlSharp.csproj" />
+  </ItemGroup>
+
+  <!-- Copy official KDL test suite -->
+  <ItemGroup>
+    <!-- Copy test input files (336 files) -->
+    <Content Include="../specs/tests/test_cases/input/**/*.kdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>OfficialTests/TestData/input/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+
+    <!-- Copy expected output files (241 files) -->
+    <Content Include="../specs/tests/test_cases/expected_kdl/**/*.kdl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>OfficialTests/TestData/expected_kdl/%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Content>
+
+    <!-- Copy test README -->
+    <Content Include="../specs/tests/README.md" Condition="Exists('../specs/tests/README.md')">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>OfficialTests/TestData/README.md</Link>
+    </Content>
+  </ItemGroup>
+</Project>
