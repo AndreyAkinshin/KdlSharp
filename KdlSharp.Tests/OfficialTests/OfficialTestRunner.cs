@@ -1,5 +1,5 @@
 using System.Text.Json;
-using FluentAssertions;
+using AwesomeAssertions;
 using KdlSharp;
 using KdlSharp.Settings;
 using Xunit;

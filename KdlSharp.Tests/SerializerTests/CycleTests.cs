@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using KdlSharp.Exceptions;
 using KdlSharp.Serialization;
 using Xunit;

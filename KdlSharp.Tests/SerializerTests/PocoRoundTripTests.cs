@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using KdlSharp.Serialization;
 using KdlSharp.Serialization.Metadata;
 using Xunit;

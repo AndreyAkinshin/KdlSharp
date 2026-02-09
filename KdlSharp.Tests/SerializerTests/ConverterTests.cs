@@ -1,5 +1,5 @@
 using System.Globalization;
-using FluentAssertions;
+using AwesomeAssertions;
 using KdlSharp.Exceptions;
 using KdlSharp.Serialization;
 using KdlSharp.Serialization.Converters;
