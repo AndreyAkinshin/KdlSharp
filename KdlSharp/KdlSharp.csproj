@@ -6,7 +6,6 @@
 
     <!-- NuGet Package Metadata -->
     <PackageId>KdlSharp</PackageId>
-    <Version>0.0.1</Version>
     <Authors>Andrey Akinshin</Authors>
     <Product>KdlSharp</Product>
     <Description>A comprehensive C# library for the KDL Document Language featuring a high-level object serializer, v2/v1 parsing, schema validation, and query support.</Description>
