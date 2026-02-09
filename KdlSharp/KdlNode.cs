@@ -246,7 +246,8 @@ public sealed class KdlNode
     }
 
     /// <summary>
-    /// Adds a child node.
+    /// Adds a child node. If the child already belongs to another parent, it is removed from
+    /// that parent first.
     /// </summary>
     /// <param name="child">The child node to add.</param>
     /// <returns>This node, for method chaining.</returns>
@@ -256,9 +257,84 @@ public sealed class KdlNode
         {
             throw new ArgumentNullException(nameof(child));
         }
+        if (child == this)
+        {
+            throw new InvalidOperationException("A node cannot be added as its own child.");
+        }
+        child.Parent?.Children.Remove(child);
         child.Parent = this;
         Children.Add(child);
         return this;
+    }
+
+    /// <summary>
+    /// Removes a child node by reference.
+    /// </summary>
+    /// <param name="child">The child node to remove.</param>
+    /// <returns><c>true</c> if the child was found and removed; otherwise, <c>false</c>.</returns>
+    public bool RemoveChild(KdlNode child)
+    {
+        if (child == null)
+        {
+            throw new ArgumentNullException(nameof(child));
+        }
+        if (Children.Remove(child))
+        {
+            child.Parent = null;
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
+    /// Removes all properties with the specified key.
+    /// </summary>
+    /// <param name="key">The property key to remove.</param>
+    /// <returns><c>true</c> if any properties were removed; otherwise, <c>false</c>.</returns>
+    public bool RemoveProperty(string key)
+    {
+        if (key == null)
+        {
+            throw new ArgumentNullException(nameof(key));
+        }
+        bool removed = false;
+        for (int i = Properties.Count - 1; i >= 0; i--)
+        {
+            if (Properties[i].Key == key)
+            {
+                Properties.RemoveAt(i);
+                removed = true;
+            }
+        }
+        return removed;
+    }
+
+    /// <summary>
+    /// Removes a specific property by reference.
+    /// </summary>
+    /// <param name="property">The property to remove.</param>
+    /// <returns><c>true</c> if the property was found and removed; otherwise, <c>false</c>.</returns>
+    public bool RemoveProperty(KdlProperty property)
+    {
+        if (property == null)
+        {
+            throw new ArgumentNullException(nameof(property));
+        }
+        return Properties.Remove(property);
+    }
+
+    /// <summary>
+    /// Removes an argument by reference.
+    /// </summary>
+    /// <param name="argument">The argument value to remove.</param>
+    /// <returns><c>true</c> if the argument was found and removed; otherwise, <c>false</c>.</returns>
+    public bool RemoveArgument(KdlValue argument)
+    {
+        if (argument == null)
+        {
+            throw new ArgumentNullException(nameof(argument));
+        }
+        return Arguments.Remove(argument);
     }
 
     /// <summary>
