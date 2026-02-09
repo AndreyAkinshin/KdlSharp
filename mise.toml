@@ -23,7 +23,10 @@ run = "find . -type d \\( -name bin -o -name obj -o -name nupkg \\) -exec rm -rf
 
 [tasks.restore]
 description = "Restore dependencies"
-run = "dotnet restore KdlSharp.sln"
+run = [
+    "git submodule update --init --recursive",
+    "dotnet restore KdlSharp.sln",
+]
 
 [tasks.pack]
 description = "Create NuGet package"

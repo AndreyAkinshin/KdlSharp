@@ -91,8 +91,8 @@ public class OfficialTestRunner
     {
         if (testDataPath == null)
         {
-            // Yield a sentinel so xUnit doesn't fail with "No data found"
-            yield return new object[] { "submodule_not_initialized", "", "", false, false };
+            // Yield a sentinel so xUnit reports a clear failure instead of "No data found"
+            yield return new object[] { "MISSING_SUBMODULE", "", "", false, false };
             yield break;
         }
 
@@ -118,10 +118,7 @@ public class OfficialTestRunner
     public void RunOfficialTest(string testName, string inputFile, string expectedFile, bool shouldFail, bool hasExpected)
     {
         if (testDataPath == null)
-        {
-            output.WriteLine("Skipped: specs submodule not initialized (run 'git submodule update --init')");
-            return;
-        }
+            Assert.Fail("specs submodule not initialized. Run: git submodule update --init --recursive");
 
         var version = GetTestVersion(testName);
         output.WriteLine($"Running test: {testName} (version: {version})");
